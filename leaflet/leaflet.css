@@ -1,0 +1,80 @@
+.leaflet-pane,
+.leaflet-tile,
+.leaflet-marker-icon,
+.leaflet-marker-shadow,
+.leaflet-tile-container,
+.leaflet-pane > svg,
+.leaflet-pane > canvas,
+.leaflet-zoom-box,
+.leaflet-image-layer,
+.leaflet-layer {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.leaflet-container {
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+  outline: 0;
+  height: 100%;
+  width: 100%;
+  touch-action: none;
+}
+
+.leaflet-tile {
+  height: 256px;
+  width: 256px;
+  will-change: transform;
+}
+
+.leaflet-control {
+  z-index: 800;
+  position: relative;
+  pointer-events: visiblePainted; 
+  pointer-events: auto;
+}
+
+.leaflet-top,
+.leaflet-bottom {
+  position: absolute;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.leaflet-top {
+  top: 0;
+}
+
+.leaflet-bottom {
+  bottom: 0;
+}
+
+.leaflet-left {
+  left: 0;
+}
+
+.leaflet-right {
+  right: 0;
+}
+
+.leaflet-control-attribution {
+  background: rgba(255, 255, 255, 0.7);
+  margin: 0;
+  padding: 0 5px;
+  color: #333;
+  font: 11px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
+}
+
+/* Marker icon paths */
+.leaflet-default-icon {
+  background-image: url('images/marker-icon.png');
+}
+
+.leaflet-marker-icon {
+  background-image: url('images/marker-icon.png');
+}
+
+.leaflet-marker-shadow {
+  background-image: url('images/marker-shadow.png');
+}

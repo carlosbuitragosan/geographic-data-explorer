@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gazetteer</title>
+
+  <!-- favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+
+  <!-- Local CSS -->
+  <link rel="stylesheet" href="bootstrap/bootstrap.min.css" />
+  <link rel="stylesheet" href="leaflet/leaflet.css" />
+  <link rel="stylesheet" href="leaflet/MarkerCluster.css" />
+  <link rel="stylesheet" href="leaflet/MarkerCluster.Default.css" />
+  <link rel="stylesheet" href="leaflet/leaflet.extra-markers.min.css" />
+  <link rel="stylesheet" href="leaflet/leaflet.easy-button.css" />
+  <link rel="stylesheet" href="css/all.min.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+  <!-- Country Dropdown -->
+  <div id="country-controls">
+    <select id="country-select" class="form-control">
+      <option value="">Select a country</option>
+    </select>
+  </div>
+
+  <!-- controls -->
+  <div id="layer-wrapper">
+    <div id="layer-toggle">Options ▾</div>
+    <div id="layer-control" class="collapsed"></div>
+  </div>
+  
+  <!-- Map Container -->
+  <div id="map"></div>
+
+  <!-- Weather Modal -->
+  <div class="modal fade" id="modalWeather" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header bg-primary text-white">
+          <h5 class="modal-title">Weather</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="weather-content"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Currency Modal -->
+  <div class="modal fade" id="modalCurrency" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-primary text-white">
+          <h5 class="modal-title">Currency Exchange</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="currency-content"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Wikipedia Modal -->
+  <div class="modal fade" id="modalWikipedia" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header bg-primary text-white">
+          <h5 class="modal-title">Wikipedia</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="wikipedia-content"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- News Modal -->
+  <div class="modal fade" id="modalNews" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header bg-primary text-white">
+          <h5 class="modal-title">Latest News</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="news-content"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Country Information Modal -->
+  <div class="modal fade" id="modalCountry" tabindex="-1" aria-labelledby="modalCountryLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-primary text-white">
+          <h5 class="modal-title" id="modalCountryLabel">At a Glance</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center" id="country-content"></div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Public Holidays Modal -->
+  <div class="modal fade" id="modalHolidays" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header bg-primary text-white">
+          <h5 class="modal-title">Public Holidays</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="holidays-content">
+          <!-- Fetched holiday content goes here -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Location Modal -->
+  <div class="modal fade" id="locationModal" tabindex="-1" aria-labelledby="locationModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content text-center">
+        <div class="modal-header bg-danger text-white">
+          <h5 class="modal-title" id="locationModalLabel">Location Needed</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          We couldn't get your current location.<br />
+          Please select a country from the dropdown to begin.<br />
+          <small class="text-muted d-block mt-2">Tip: Make sure location services are enabled in your browser settings.</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading Overlay -->
+  <div id="loading-overlay">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+  <!-- Local JS -->
+  <script src="jquery/jquery-3.7.1.min.js"></script>
+  <script src="bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="leaflet/leaflet.js"></script>
+  <script src="leaflet/leaflet.markercluster.js"></script>
+  <script src="leaflet/leaflet.extra-markers.min.js"></script>
+  <script src="leaflet/leaflet.easy-button.js"></script>
+  <script src="libs/date.js"></script>
+  <script src="libs/numeral.min.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

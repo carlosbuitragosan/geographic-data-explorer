@@ -1,0 +1,235 @@
+/* Map Full Screen */
+#map {
+  height: 100vh;
+}
+
+/* Shared cluster bubble base */
+.marker-cluster .cluster-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 30px;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+}
+
+/* Blue for city clusters */
+.marker-cluster .cluster-icon.city {
+  background-color: #10469d;
+}
+
+/* Green for airport clusters */
+.marker-cluster .cluster-icon.airport {
+  background-color: #961f21;
+}
+
+/* Country Select Dropdown */
+#country-controls {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  background: white;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+#country-select {
+  appearance: auto;
+  -webkit-appearance: auto;
+  -moz-appearance: auto;
+}
+
+/* Offset left controls below dropdown */
+.leaflet-left {
+  margin-top: 100px;
+}
+
+/* EasyButton tooltip visibility */
+.leaflet-control-easybutton button {
+  position: relative;
+  z-index: 1001;
+  pointer-events: auto !important;
+}
+
+/* Space between each easy button */
+.leaflet-control.easy-button-container {
+  margin-top: 10px;
+  margin-left: 10px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+/* Leaflet Layers Control (Streets, Satellite, etc.) */
+.leaflet-control-layers {
+  background: white;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Vertical layout for base layers */
+.leaflet-control-layers-base label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* Vertical layout for overlay layers */
+.leaflet-control-layers-overlays label {
+  display: block;
+  margin-top: 5px;
+}
+
+/* Remove ugly focus/outline from buttons */
+.btn:focus,
+.btn:active {
+  outline: none !important;
+  box-shadow: none !important;
+  background-color: var(--bs-primary, #0d6efd) !important;
+  border-color: var(--bs-primary, #0d6efd) !important;
+}
+
+.custom-control-layers {
+  background: white;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+/* Loading overlay */
+#loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+#loading-overlay .spinner-border {
+  width: 4rem;
+  height: 4rem;
+}
+
+/* Marker and popup styling */
+.leaflet-pane.markerPane .leaflet-marker-icon {
+  z-index: 651;
+  pointer-events: auto;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+}
+
+.leaflet-marker-shadow {
+  display: none !important;
+}
+
+/* zoom controls */
+.leaflet-control-zoom a {
+  background-color: var(--bs-primary);
+  text-decoration: none;
+  color: #fff;
+  border: none;
+  border-radius: 0.375rem; 
+  font-size: 1.2rem;
+  padding: 6px 10px;
+  margin: 2px 10px;
+  text-align: center;
+  width: 30px;
+  height: 30px;
+  line-height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.leaflet-control-zoom a:hover {
+  background-color: var(--bs-primary);
+  filter: brightness(90%);
+}
+
+.leaflet-popup {
+  pointer-events: auto !important;
+}
+
+.leaflet-popup-pane {
+  z-index: 10000 !important;
+  background-color: transparent;
+}
+
+.leaflet-popup-content-wrapper {
+  background: white;
+  color: #333;
+  font-size: 14px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.leaflet-popup-tip {
+  background: white;
+}
+
+.leaflet-popup-close-button {
+  display: none !important;
+}
+
+/* Custom layer toggle panel */
+#layer-wrapper {
+  position: absolute;
+  top: 110px;
+  right: 10px;
+  z-index: 1001;
+  background: white;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  font-family: sans-serif;
+  width: 220px;
+}
+
+#layer-toggle {
+  padding: 8px 12px;
+  background: #f5f5f5;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  border-bottom: 1px solid #ccc;    
+}
+
+#layer-control.collapsed {
+  display: none;
+}
+
+.modal-body {
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 576px) {
+  #country-controls {
+    top: 5px;
+    padding: 8px;
+    width: 90%;
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 950px) and (orientation: landscape) {
+  .leaflet-left {
+    margin-top: 10px;
+  }
+ 
+}
