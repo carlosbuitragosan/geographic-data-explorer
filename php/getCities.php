@@ -10,7 +10,7 @@ if (!$code) {
 }
 
 // Build URL
-$url = "http://api.geonames.org/searchJSON?country=$code&featureClass=P&maxRows=50&username=$geonamesUser";
+$url = "https://api.geonames.org/searchJSON?country=$code&featureClass=P&maxRows=50&username=$geonamesUser";
 
 // Get response
 $response = @file_get_contents($url);  // The "@" prevents warnings if URL fails
