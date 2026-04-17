@@ -25,7 +25,7 @@ jobs:
           timeout_minutes: 10
           max_attempts: 3
           command: |
-            ssh -o ConnectTimeout=10 -o StrictHostKeyChecking=no -o IdentitiesOnly=yes depeloy@187.77.177.77 << 'EOF'
+            ssh -o ConnectTimeout=10 -o StrictHostKeyChecking=no -o IdentitiesOnly=yes deploy@187.77.177.77 << 'EOF'
 
             # Stop if any command fails
             set -e
